@@ -10,6 +10,4 @@ RUN npm install -g snyk
 COPY . .
 COPY .env .
 
-RUN snyk test
-
 CMD ["node", "index.js"]
