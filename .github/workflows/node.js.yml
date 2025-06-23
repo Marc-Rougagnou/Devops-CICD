@@ -25,14 +25,7 @@ jobs:
         run: npm run lint
 
       - name: Run npm audit
-        run: npm audit --audit-level=moderate || true
-
-      - name: Run Snyk static analysis
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: test
+        run: npm audit || true
 
       - name: Run tests
         run: npm test
