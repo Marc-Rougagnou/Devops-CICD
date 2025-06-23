@@ -1,0 +1,50 @@
+name: CI Pipeline for PR to dev
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Frontend steps
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Run frontend lint
+        run: |
+          cd frontend
+          npm run lint
+
+      - name: Run npm audit frontend
+        run: |
+          cd frontend
+          npm audit || true
+
+      - name: Run frontend tests
+        run: |
+          cd frontend
+          npm test
+
+      # Backend steps
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      # Build Docker images
+      - name: Build Docker images
+        run: docker compose build

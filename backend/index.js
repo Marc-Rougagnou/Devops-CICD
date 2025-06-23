@@ -8,8 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const repoDir = '/path/to/your/target/directory'; // this is where the code will pll your directory code locally just to use the docker-compose.yml file
-const repoUrl = 'https://github.com/user/repo.git';// this is the url of the repo you want to pull the code from
+const repoDir = 'C:\\Users\\Marc\\Bureau'; // this is where the code will pll your directory code locally just to use the docker-compose.yml file
+const repoUrl = 'https://github.com/Marc-Rougagnou/Devops-CICD.git';// this is the url of the repo you want to pull the code from
 
 const repoName = path.basename(repoUrl, '.git');
 const fullPath = path.join(repoDir, repoName);
@@ -56,6 +56,13 @@ app.post('/webhook', (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+  res.send('Server is running');
+});
 app.listen(8000, () => {
   console.log('Server listening on port 8000');
 });
+
+require('dotenv').config();
+
+console.log("first_secret is:", process.env.first_secret);

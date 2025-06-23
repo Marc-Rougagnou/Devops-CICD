@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"          # Expose le port 80 du conteneur sur le 3000 de ta machine
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:3000"        # Expose le port 3000 du backend sur le 5000 de ta machine
