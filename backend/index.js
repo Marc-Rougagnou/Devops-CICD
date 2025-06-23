@@ -62,3 +62,7 @@ app.get('/', (req, res) => {
 app.listen(8000, () => {
   console.log('Server listening on port 8000');
 });
+
+require('dotenv').config();
+
+console.log("first_secret is:", process.env.first_secret);
