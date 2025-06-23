@@ -18,17 +18,38 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install
+      # Frontend steps
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
 
-      - name: Run lint
-        run: npm run lint
+      - name: Run frontend lint
+        run: |
+          cd frontend
+          npm run lint
 
-      - name: Run npm audit
-        run: npm audit || true
+      - name: Run npm audit frontend
+        run: |
+          cd frontend
+          npm audit
 
-      - name: Run tests
-        run: npm test
+      - name: Run frontend tests
+        run: |
+          cd frontend
+          npm test
 
+      # Backend steps
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Run npm audit backend
+        run: |
+          cd backend
+          npm audit || true
+
+      # Build Docker images
       - name: Build Docker images
         run: docker-compose build
