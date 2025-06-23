@@ -3,9 +3,12 @@ FROM node:18
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
 
-RUN npm install -g snyk
+# Debug: voir le contenu du dossier /app
+RUN ls -l /app
+RUN cat package.json
+
+RUN npm install
 
 COPY . .
 COPY .env .
