@@ -1,6 +1,14 @@
 FROM node:18
+
 WORKDIR /app
-COPY . .
+
+COPY package*.json ./
 RUN npm install
-EXPOSE 3000
+
+RUN npm install -g snyk
+
+COPY . .
+
+RUN snyk test
+
 CMD ["node", "index.js"]
