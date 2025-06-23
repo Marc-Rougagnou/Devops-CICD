@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "eslint": "^9.29.0",
-    "express": "^5.1.0",
-    "snyk": "^1.1297.2"
-  }
-}
