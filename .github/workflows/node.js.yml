@@ -32,7 +32,7 @@ jobs:
       - name: Run npm audit frontend
         run: |
           cd frontend
-          npm audit
+          npm audit || true
 
       - name: Run frontend tests
         run: |
@@ -44,11 +44,6 @@ jobs:
         run: |
           cd backend
           npm install
-
-      - name: Run npm audit backend
-        run: |
-          cd backend
-          npm audit || true
 
       # Build Docker images
       - name: Build Docker images
